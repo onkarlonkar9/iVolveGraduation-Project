@@ -1,4 +1,6 @@
-# DevOps Graduation Project <p align="center"> <img src="static/logos/nti-logo.png" height="90"/>      <img src="static/logos/ivolve-logo.png" height="90"/> </p> <h3 align="center">In Collaboration with iVolve Technologies</h3> <p align="center"> Final project for the NTI DevOps program, containerizing and orchestrating a Python web app using Docker and Kubernetes. </p> <p align="center"> <img src="./static/system.gif" alt="Demo" /> </p> --- ## Docker & Docker Compose The app is containerized using **Docker** and configured for local development with **Docker Compose**. ### Project Structure
+# DevOps Graduation Project <p align="center"> <img src="static/logos/nti-logo.png" height="90"/>      <img src="static/logos/ivolve-logo.png" height="90"/> </p> <h3 align="center">In Collaboration with iVolve Technologies</h3> <p align="center"> Final project for the NTI DevOps program, containerizing and orchestrating a Python web app using Docker and Kubernetes. </p> <p align="center"> <img src="./static/system.gif" alt="Demo" /> </p> 
+
+### Project Structure
 iVolveGraduationProject/
 ├── app/
 │   ├── app.py
@@ -8,9 +10,13 @@ iVolveGraduationProject/
 ├── Dockerfile
 ├── docker-compose.yml
 └── README.md
+
 ### Dockerfile (Multi-Stage)
+
 dockerfile
+
 # Build dependencies
+```bash
 FROM python:3.11-slim AS builder
 WORKDIR /app
 COPY app/requirements.txt .
@@ -24,8 +30,10 @@ COPY --from=builder /root/.local /root/.local
 ENV PATH=/root/.local/bin:$PATH
 EXPOSE 5000
 CMD ["python", "app.py"]
+```
 ### docker-compose.yml
 yaml
+```bash
 version: '3.8'
 
 services:
@@ -42,36 +50,45 @@ services:
       - FLASK_ENV=development
       - FLASK_APP=app.py
     command: python app.py
+```
 ### Run Locally
-bash
+```bash
 docker-compose up --build
+```
 Access: [http://localhost:5000](http://localhost:5000) ### Docker Hub To publish the image:
-bash
+```bash
 docker login
 docker-compose build
 docker push mnagy156/flask-app:latest
+```
 ## Kubernetes Deployment The app is deployed on a local Kubernetes cluster (Minikube) with custom YAML manifests. ### Manifests Location
+```bash
 k8s/
 ├── namespace.yaml
 ├── deployment.yaml
 └── service.yaml
+```
 ### Deployment Steps 1. **Start Minikube**
-bash
+```bash
 minikube start
+```
 2. **Use Minikube’s Docker & Build Image**
-bash
+```bash
 eval $(minikube docker-env)
 docker build -t ivolve-app:latest .
+```
 3. **Apply Kubernetes Manifests**
-bash
+```bash
 kubectl apply -f k8s/namespace.yaml
 kubectl apply -f k8s/ -n ivolve
+```
 4. **Access the App**
-bash
+```bash
 minikube service ivolve-service -n ivolve
+```
 **Output example:**
 http://192.168.49.2:30007
-
+```bash
 terraform/
 ├── backend.tf                # S3 backend configuration
 ├── main.tf                   # Root module calling child modules
@@ -86,6 +103,8 @@ terraform/
 │       ├── main.tf
 │       ├── variables.tf
 │       └── outputs.tf
+
+```
 # 🎓 DevOps Graduation Project
 
 <p align="center">
