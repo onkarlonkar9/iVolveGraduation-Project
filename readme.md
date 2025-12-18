@@ -11,21 +11,6 @@ iVolveGraduationProject/
 ├── Dockerfile
 ├── docker-compose.yml
 └── README.md
-# 🎓 DevOps Graduation Project
-
-<p align="center">
-  <img src="static/logos/nti-logo.png" height="80" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="static/logos/ivolve-logo.png" height="80" />
-</p>
-
-<h3 align="center">Final Project for NTI DevOps Program</h3>
-
-<p align="center">
-  A complete DevOps workflow demonstrating containerization, orchestration, infrastructure provisioning, configuration management, CI/CD automation, and GitOps-driven deployment—all tied together from code to cloud.
-</p>
-
----
 
 ## 🔗 Repository
 
