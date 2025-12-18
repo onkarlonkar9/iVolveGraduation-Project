@@ -1,3 +1,4 @@
+
 # DevOps Graduation Project <p align="center"> <img src="static/logos/nti-logo.png" height="90"/>      <img src="static/logos/ivolve-logo.png" height="90"/> </p> <h3 align="center">In Collaboration with iVolve Technologies</h3> <p align="center"> Final project for the NTI DevOps program, containerizing and orchestrating a Python web app using Docker and Kubernetes. </p> <p align="center"> <img src="./static/system.gif" alt="Demo" /> </p> 
 
 ### Project Structure
@@ -10,6 +11,64 @@ iVolveGraduationProject/
 ├── Dockerfile
 ├── docker-compose.yml
 └── README.md
+# 🎓 DevOps Graduation Project
+
+<p align="center">
+  <img src="static/logos/nti-logo.png" height="80" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="static/logos/ivolve-logo.png" height="80" />
+</p>
+
+<h3 align="center">Final Project for NTI DevOps Program</h3>
+
+<p align="center">
+  A complete DevOps workflow demonstrating containerization, orchestration, infrastructure provisioning, configuration management, CI/CD automation, and GitOps-driven deployment—all tied together from code to cloud.
+</p>
+
+---
+
+## 🔗 Repository
+
+**GitHub:** https://github.com/onkarlonkar9/iVolveGraduation-Project.git
+
+---
+
+## 🧠 Project Summary
+
+This project shows an end-to-end DevOps pipeline for a Python web app, including:
+
+- **Docker** containerization  
+- **Docker Compose** for local orchestration  
+- **Kubernetes** deployment (Minikube)  
+- **Terraform** provisioning (AWS infrastructure)  
+- **Ansible** configuration management  
+- **Jenkins** based CI  
+- **ArgoCD** for GitOps CD
+
+---
+
+## 🐳 Docker & Docker Compose
+
+The web app is containerized with a multi-stage Dockerfile and configured for local development using Docker Compose.
+
+**Run locally:**
+```bash
+docker-compose up --build
+```
+Visit: http://localhost:5000
+
+☸️ Kubernetes Deployment (Minikube)
+Build and deploy
+```bash
+minikube start
+eval $(minikube docker-env)
+docker build -t ivolve-app:latest .
+kubectl apply -f k8s/namespace.yaml
+kubectl apply -f k8s/ -n ivolve
+```
+minikube service ivolve-service -n ivolve
+✔ Uses custom namespace
+✔ Local image deployment without remote registry
 
 ### Dockerfile (Multi-Stage)
 
@@ -105,64 +164,6 @@ terraform/
 │       └── outputs.tf
 
 ```
-# 🎓 DevOps Graduation Project
-
-<p align="center">
-  <img src="static/logos/nti-logo.png" height="80" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="static/logos/ivolve-logo.png" height="80" />
-</p>
-
-<h3 align="center">Final Project for NTI DevOps Program</h3>
-
-<p align="center">
-  A complete DevOps workflow demonstrating containerization, orchestration, infrastructure provisioning, configuration management, CI/CD automation, and GitOps-driven deployment—all tied together from code to cloud.
-</p>
-
----
-
-## 🔗 Repository
-
-**GitHub:** https://github.com/onkarlonkar9/iVolveGraduation-Project.git
-
----
-
-## 🧠 Project Summary
-
-This project shows an end-to-end DevOps pipeline for a Python web app, including:
-
-- **Docker** containerization  
-- **Docker Compose** for local orchestration  
-- **Kubernetes** deployment (Minikube)  
-- **Terraform** provisioning (AWS infrastructure)  
-- **Ansible** configuration management  
-- **Jenkins** based CI  
-- **ArgoCD** for GitOps CD
-
----
-
-## 🐳 Docker & Docker Compose
-
-The web app is containerized with a multi-stage Dockerfile and configured for local development using Docker Compose.
-
-**Run locally:**
-```bash
-docker-compose up --build
-```
-Visit: http://localhost:5000
-
-☸️ Kubernetes Deployment (Minikube)
-Build and deploy
-```bash
-minikube start
-eval $(minikube docker-env)
-docker build -t ivolve-app:latest .
-kubectl apply -f k8s/namespace.yaml
-kubectl apply -f k8s/ -n ivolve
-```
-minikube service ivolve-service -n ivolve
-✔ Uses custom namespace
-✔ Local image deployment without remote registry
 
 ☁️ Infrastructure with Terraform (AWS)
 Terraform code provisions:
