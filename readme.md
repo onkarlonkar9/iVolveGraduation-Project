@@ -32,29 +32,6 @@ This project shows an end-to-end DevOps pipeline for a Python web app, including
 
 ---
 
-## 🐳 Docker & Docker Compose
-
-The web app is containerized with a multi-stage Dockerfile and configured for local development using Docker Compose.
-
-**Run locally:**
-```bash
-docker-compose up --build
-```
-Visit: http://localhost:5000
-
-☸️ Kubernetes Deployment (Minikube)
-Build and deploy
-```bash
-minikube start
-eval $(minikube docker-env)
-docker build -t ivolve-app:latest .
-kubectl apply -f k8s/namespace.yaml
-kubectl apply -f k8s/ -n ivolve
-```
-minikube service ivolve-service -n ivolve
-✔ Uses custom namespace
-✔ Local image deployment without remote registry
-
 ### Dockerfile (Multi-Stage)
 
 dockerfile
@@ -95,43 +72,29 @@ services:
       - FLASK_APP=app.py
     command: python app.py
 ```
-### Run Locally
+## 🐳 Docker & Docker Compose
+
+The web app is containerized with a multi-stage Dockerfile and configured for local development using Docker Compose.
+
+**Run locally:**
 ```bash
 docker-compose up --build
 ```
-Access: [http://localhost:5000](http://localhost:5000) ### Docker Hub To publish the image:
-```bash
-docker login
-docker-compose build
-docker push mnagy156/flask-app:latest
-```
-## Kubernetes Deployment The app is deployed on a local Kubernetes cluster (Minikube) with custom YAML manifests. ### Manifests Location
-```bash
-k8s/
-├── namespace.yaml
-├── deployment.yaml
-└── service.yaml
-```
-### Deployment Steps 1. **Start Minikube**
+Visit: http://localhost:5000
+
+☸️ Kubernetes Deployment (Minikube)
+Build and deploy
 ```bash
 minikube start
-```
-2. **Use Minikube’s Docker & Build Image**
-```bash
 eval $(minikube docker-env)
 docker build -t ivolve-app:latest .
-```
-3. **Apply Kubernetes Manifests**
-```bash
 kubectl apply -f k8s/namespace.yaml
 kubectl apply -f k8s/ -n ivolve
 ```
-4. **Access the App**
-```bash
 minikube service ivolve-service -n ivolve
-```
-**Output example:**
-http://192.168.49.2:30007
+✔ Uses custom namespace
+✔ Local image deployment without remote registry
+
 ```bash
 terraform/
 ├── backend.tf                # S3 backend configuration
